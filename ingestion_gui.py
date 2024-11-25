@@ -98,7 +98,7 @@ def ingestion_gui():
                 fileBytes = audio_data
                 #print(type(fileBytes))
                 # result = db.save_df_as_table(data_df,fileName)
-                file_path = os.path.join(r"D:\Work_Space\user_data", uploaded_file.name)
+                file_path = os.path.join(r"C:\Adrija_1\user_data", uploaded_file.name)
                 with open(file_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
                 st.session_state['uploaded_file'] = uploaded_file
