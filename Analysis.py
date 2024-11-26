@@ -7,7 +7,7 @@ import matplotlib.ticker as ticker
 from io import BytesIO
 
 def show_PCG(wav_file):
-    
+    data_file=BytesIO(wav_file)
     data,sr=librosa.load(wav_file, sr=2000)
     plot= librosa.display.waveshow(data, sr=2000)
     plt.title("PCG Signal")

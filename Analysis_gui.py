@@ -25,8 +25,8 @@ def get_insights(dataset_file_name,dataset_df):
         #     st.image(plot_1)
         data_bytes=dataset_df['audio_data']
         audio_bytes=data_bytes[0]
-        audio_file=BytesIO(audio_bytes)
-        plot=Analysis.show_PCG(audio_file)
+        # audio_file=BytesIO(audio_bytes)
+        plot=Analysis.show_PCG(audio_bytes)
         plot_1=Analysis.show_spectogram(audio_bytes)
         st.image(plot)
         st.image(plot_1)
