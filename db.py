@@ -11,7 +11,7 @@ def init_db():
         connection = duckdb.connect("Murmur_db.db")
         st.session_state['connection'] = connection
         connection.execute('CREATE SEQUENCE IF NOT EXISTS "seq_dataset_id" START 1')
-        connection.execute("CREATE TABLE IF NOT EXISTS datasets (dataset_id integer primary key default nextval('seq_dataset_id'), file_name varchar(1000) unique, mime_type varchar(1000),file_size integer, audio_data varchar,description varchar(1000),date_created datetime)")
+        connection.execute("CREATE TABLE IF NOT EXISTS datasets (dataset_id integer primary key default nextval('seq_dataset_id'), file_name varchar(1000) unique, mime_type varchar(1000),file_size integer, audio_data BLOB,description varchar(1000),date_created datetime)")
        
         print(connection.execute("SHOW TABLES").df())
 
