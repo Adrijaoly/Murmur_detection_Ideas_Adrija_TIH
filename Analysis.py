@@ -17,8 +17,10 @@ def show_PCG(wav_file):
     buf.seek(0)
     return buf
 
+
 def show_spectogram(wav_file):
-    data,sr=librosa.load(wav_file,sr=2000)
+    data_file=BytesIO(wav_file)
+    data,sr=librosa.load(data_file,sr=2000)
     mel_spectrogram = librosa.feature.melspectrogram(y=data, sr=sr)
     mel_spectrogram_db = librosa.power_to_db(mel_spectrogram, ref=np.max)
     # Create plot
@@ -41,6 +43,6 @@ def show_spectogram(wav_file):
     plt.close()
     buf.seek(0)
     return buf
-    
+   
     
      
