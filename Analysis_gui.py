@@ -7,6 +7,7 @@ import os
 import soundfile as sf
 import numpy as np
 from io import BytesIO
+import base64
 
 dataset_file_name = None 
 
@@ -25,7 +26,8 @@ def get_insights(dataset_file_name,dataset_df):
         #     st.image(plot_1)
         data_bytes=dataset_df['audio_data']
         audio_bytes=data_bytes[0]
-        audio_file=BytesIO(audio_bytes)
+        audio_bytes_new = base64.b64decode(audio_bytes)
+        audio_file=BytesIO(audio_bytes_new)
         plot=Analysis.show_PCG(audio_file)
         plot_1=Analysis.show_spectogram(audio_bytes)
         st.image(plot)
