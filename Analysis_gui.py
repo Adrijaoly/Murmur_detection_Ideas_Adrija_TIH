@@ -15,9 +15,6 @@ dataset_file_name = None
 def get_insights(dataset_file_name,file_path):
     Analysis_grid = grid([1], vertical_align="centre")
     with Analysis_grid.container():
-        #tab1,tab2=st.tabs(['PCG','MFCC'])  
-        # wav_data = os.listdir(r"C:\Adrija_1\user_data")
-        # base_path = r"C:\Adrija_1\user_data"
         audio_path=file_path
         plot=Analysis.show_PCG(audio_path)
         plot_1=Analysis.show_spectogram(audio_path)
