@@ -7,7 +7,7 @@ import os
 import soundfile as sf
 import numpy as np
 from io import BytesIO
-import base64
+from pydub import AudioSegment
 
 dataset_file_name = None 
 
@@ -16,22 +16,15 @@ def get_insights(dataset_file_name,dataset_df):
     Analysis_grid = grid([1], vertical_align="centre")
     with Analysis_grid.container():
         #tab1,tab2=st.tabs(['PCG','MFCC'])  
-        # wav_data = os.listdir(r"C:\Adrija_1\user_data")
-        # base_path = r"C:\Adrija_1\user_data"
-        # for each_file in wav_data:
-        #     full_path = os.path.join(base_path, each_file)
-        #     plot=Analysis.show_PCG(full_path)
-        #     plot_1=Analysis.show_spectogram(full_path)
-        #     st.image(plot)
-        #     st.image(plot_1)
-        data_bytes=dataset_df['audio_data']
-        audio_bytes=data_bytes[0]
-        audio_bytes_new = base64.b64decode(audio_bytes)
-        audio_file=BytesIO(audio_bytes_new)
-        plot=Analysis.show_PCG(audio_file)
-        plot_1=Analysis.show_spectogram(audio_bytes)
-        st.image(plot)
-        st.image(plot_1)
+        wav_data = os.listdir(r"C:\Adrija_1\user_data")
+        base_path = r"C:\Adrija_1\user_data"
+        for each_file in wav_data:
+            full_path = os.path.join(base_path, each_file)
+            plot=Analysis.show_PCG(full_path)
+            plot_1=Analysis.show_spectogram(full_path)
+            st.image(plot)
+            st.image(plot_1)
+        
         
         
 
