@@ -24,6 +24,7 @@ def get_insights(dataset_file_name,file_path):
 def Prediction_gui():
     dataset_df = db.get_datasets_1()
     dataset_file_name = None
+    file_path=None
     if "audio_file_path" in st.session_state:
         file_path = st.session_state.audio_file_path
     dataset_file_name = st.selectbox('Select a dataset',dataset_df['file_name'].tolist(), index=None, placeholder="Select a dataset...")
