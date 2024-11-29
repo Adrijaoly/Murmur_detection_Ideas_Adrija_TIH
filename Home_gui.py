@@ -13,6 +13,7 @@ import io
 import db
 import ingestion_gui
 import Analysis_gui
+import Prediction_gui
 # import Time_Series_Analysis_gui
 # import ML_Modelling_gui
 # import storytelling_gui
@@ -63,16 +64,9 @@ st.markdown("""
 
 my_grid = grid([1,6,5], [2,5],1, vertical_align="center")
 
-#my_grid.title("IDEAS Murmur Detection System")
-#my_grid.title("IDEAS Murmur Detection System")
-# my_grid.title("System")
 my_grid.image('Ideas_logo.jpg', width=100)
 my_grid.markdown("<h1 style='text-align: center; color: black;'>IDEAS Murmur Detection System</h1>", unsafe_allow_html=True)
 my_grid.image('csi_logo.jpg',width=100)
-
-
-
-
 
 # Row 1:
 with my_grid.container(height=640, border=True):  #Menu
@@ -84,10 +78,7 @@ with my_grid.container(height=640, border=True):  #Menu
     #     sel2= option_menu(None,["SVR","RF"])    
 body = my_grid.container(height=640, border=True)  #Main body
 
-# Row 2 - Header:
-# my_grid.image('Ideas_logo.jpg', width=300)
-# my_grid.image('csi_logo.jpg',width=100)
-#my_grid.title("IDEAS Murmur Detection System")
+
 
 # Row 2:
 # with my_grid.container(height=640, border=True):  #Menu
@@ -111,6 +102,9 @@ with body:
 
     if selected == "Analysis":
         Analysis_gui.Analysis_gui()
+    
+    if selected=="Prediction":
+        Prediction_gui.Prediction_gui()
 
 #     if selected == "Time Series Analysis":
 #         Time_Series_Analysis_gui.Time_Series_Analysis_gui()

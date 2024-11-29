@@ -99,6 +99,8 @@ def ingestion_gui():
                 #print(type(fileBytes))
                 # result = db.save_df_as_table(data_df,fileName)
                 # file_path = os.path.join(r'C:\Adrija_1\user_data', uploaded_file.name)
+                # with open(file_path, "wb") as f:
+                #     f.write(uploaded_file.getbuffer())
                 temp_dir = "temp_audio"
                 os.makedirs(temp_dir, exist_ok=True)  
                 file_path = os.path.join(temp_dir, uploaded_file.name)       

@@ -5,11 +5,9 @@ import librosa.display
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker 
 from io import BytesIO
-import soundfile as sf
 
 def show_PCG(wav_file):
-    #data_file=BytesIO(wav_file)
-    data,sr=librosa.load(wav_file,sr=2000)
+    data,sr=librosa.load(wav_file, sr=2000)
     plot= librosa.display.waveshow(data, sr=2000)
     plt.title("PCG Signal")
     buf = BytesIO()
@@ -20,7 +18,6 @@ def show_PCG(wav_file):
 
 
 def show_spectogram(wav_file):
-    #data_file=BytesIO(wav_file)
     data,sr=librosa.load(wav_file,sr=2000)
     mel_spectrogram = librosa.feature.melspectrogram(y=data, sr=sr)
     mel_spectrogram_db = librosa.power_to_db(mel_spectrogram, ref=np.max)

@@ -4,10 +4,8 @@ import db
 import Analysis
 import io
 import os
-import soundfile as sf
-import numpy as np
-from io import BytesIO
-from pydub import AudioSegment
+
+
 
 dataset_file_name = None 
 
@@ -20,12 +18,6 @@ def get_insights(dataset_file_name,file_path):
         plot_1=Analysis.show_spectogram(audio_path)
         st.image(plot)
         st.image(plot_1)
-        # for each_file in wav_data:
-        #     full_path = os.path.join(base_path, each_file)
-        #     plot=Analysis.show_PCG(full_path)
-        #     plot_1=Analysis.show_spectogram(full_path)
-        #     st.image(plot)
-        #     st.image(plot_1)
         
         
         
