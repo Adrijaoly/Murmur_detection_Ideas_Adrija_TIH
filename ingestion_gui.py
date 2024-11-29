@@ -98,16 +98,9 @@ def ingestion_gui():
                 fileBytes = audio_data
                 #print(type(fileBytes))
                 # result = db.save_df_as_table(data_df,fileName)
-                # file_path = os.path.join(r'C:\Adrija_1\user_data', uploaded_file.name)
-                # with open(file_path, "wb") as f:
-                #     f.write(uploaded_file.getbuffer())
-                temp_dir = "temp_audio"
-                os.makedirs(temp_dir, exist_ok=True)  
-                file_path = os.path.join(temp_dir, uploaded_file.name)       
-                       
+                file_path = os.path.join("dataset_files/", uploaded_file.name)
                 with open(file_path, "wb") as f:
                     f.write(uploaded_file.getbuffer())
-                st.session_state.audio_file_path = file_path
                 st.session_state['uploaded_file'] = uploaded_file
                 st.session_state['uploaded_file_name'] = uploaded_file.name
                 result = db.insert_dataset(fileName, fileBytes, mime_type, fileSize,description)

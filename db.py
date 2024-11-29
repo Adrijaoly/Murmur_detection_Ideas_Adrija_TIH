@@ -30,14 +30,14 @@ def delete_dataset(dataset_id):
         connection = st.session_state['connection'] 
     return connection.execute('DELETE FROM datasets where dataset_id=?', [dataset_id])
 
-def delete_dataset_file(dataset_file_name):
-    if os.path.exists("dataset_files/" + dataset_file_name):
-        os.remove("dataset_files/" + dataset_file_name)
+def delete_dataset_file(file_name):
+    if os.path.exists("dataset_files/" + file_name):
+        os.remove("dataset_files/" + file_name)
     else:
         print("The dataset file does not exist")
 
 def get_dataset_file(dataset_file_name):
-    path = "dataset_files/" + dataset_file_name
+    path = r"C:\Adrija_1\user_data" + dataset_file_name
     print(path)
     if os.path.exists(path):
         #os.read("dataset_files/" + dataset_file_name)
@@ -47,8 +47,6 @@ def get_dataset_file(dataset_file_name):
     else:
         print("The dataset file does not exist")
 
-
-    
 
 def insert_dataset(fileName, fileBytes, mime_type,fileSize,description):
     dir = "dataset_files"
@@ -75,26 +73,26 @@ def load_df_from_parquet(dataset_file_name, preprocess = False):
 
     return df
 
-def get_dataset_id_from_dataset_file_name(dataset_file_name):
+def get_dataset_id_from_dataset_file_name(file_name):
     if 'connection' in st.session_state:
         connection = st.session_state['connection']
-    return connection.execute("SELECT dataset_id from datasets where file_name = ?", [dataset_file_name]).df().iloc[0]["dataset_id"].item()
+    return connection.execute("SELECT dataset_id from datasets where file_name = ?", [file_name]).df().iloc[0]["dataset_id"].item()
 
 
-def get_dataset_id_from_dataset_file_name(dataset_file_name):
-    if 'connection' not in st.session_state:
-        init_db()
-    connection = st.session_state['connection']
+# def get_dataset_id_from_dataset_file_name(file_name):
+#     if 'connection' not in st.session_state:
+#         init_db()
+#     connection = st.session_state['connection']
 
-    query = 'SELECT dataset_id from datasets WHERE file_name = ?'
+#     query = 'SELECT dataset_id from datasets WHERE file_name = ?'
 
-    result = connection.execute(query, [str(dataset_file_name)]).fetchone()
+#     result = connection.execute(query, [str(file_name)]).fetchone()
 
-    if result:
-        dataset_id = result[0]
-        return dataset_id
-    else:
-        return None
+#     if result:
+#         dataset_id = result[0]
+#         return dataset_id
+#     else:
+#         return None
 
 
 
