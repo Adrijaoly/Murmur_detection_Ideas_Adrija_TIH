@@ -36,7 +36,7 @@ def ingestion_gui():
     init()
     colT1,colT2 = st.columns([1,8])
     with colT2:
-        st.write("**Currently available datasets**")  #** for bold
+        st.write("**Currently available audio files**")  #** for bold
         
     data_grid = grid([1], vertical_align="centre")
     container = data_grid.container()
@@ -44,12 +44,12 @@ def ingestion_gui():
         ph = st.empty()
         dataset_df = db.get_datasets()
         dataset_df.insert(0, 'Select', False)
-        selection = ph.data_editor(dataset_df, height=300,hide_index=True, column_config={"Select": st.column_config.CheckboxColumn(help="Select only one dataset"), "dataset_id":"Dataset ID", "file_name": "File Name", "mime_type": "File Type", "file_size": "File Size in bytes", "date_created": "Data Uploaded"})
+        selection = ph.data_editor(dataset_df, height=300,hide_index=True, column_config={"Select": st.column_config.CheckboxColumn(help="Select only one dataset"), "dataset_id":"Audio File ID", "file_name": "File Name", "mime_type": "File Type", "file_size": "File Size in bytes", "date_created": "File Uploaded","description":"Description"})
         st.session_state['selection'] = selection
         message = st.empty()
         #put_selected_file_details_in_sesion()
 
-        if st.button("Delete selected dataset", type="primary"):
+        if st.button("Delete selected file", type="primary"):
             selection = st.session_state['selection']           
             checkedBoxes = selection['Select'].tolist()
 
@@ -59,15 +59,15 @@ def ingestion_gui():
                     #print(result)
                 dataset_file_name = selection['file_name'].tolist()[checkedBoxes.index(True)]
                 db.delete_dataset_file(dataset_file_name)
-                message.success("Dataset deleted")
+                message.success("File deleted")
                 time.sleep(1)
                 message.empty()                  
                 dataset_df = db.get_datasets()
                 dataset_df.insert(0, 'Select',False)
                 ph.data_editor(dataset_df, hide_index=True, column_config={"Select": st.column_config.CheckboxColumn(help="Select only one dataset"), "dataset_id":"Dataset ID", "file_name": "File Name", "mime_type": "File Type", "file_size": "File Size in bytes", "date_created": "Data Uploaded"})
 
-        if st.download_button(label="Download selected dataset", data=st.session_state['dataset_file_content'], mime=st.session_state['mime_type'], file_name=st.session_state['dataset_file_name']):
-                message.success("Dataset downloaded")
+        if st.download_button(label="Download selected file", data=st.session_state['dataset_file_content'], mime=st.session_state['mime_type'], file_name=st.session_state['dataset_file_name']):
+                message.success("file downloaded")
                 time.sleep(1)
                 message.empty()                  
 
@@ -77,8 +77,8 @@ def ingestion_gui():
         with file:
             with st.form("upload-form", clear_on_submit=True):
                 uploaded_file = st.file_uploader("FILE UPLOADER",type = ['wav'])
-                description = st.text_area("Enter a description for the dataset")
-                submitted = st.form_submit_button("UPLOAD DATASET")
+                description = st.text_area("Enter a description for the audio file")
+                submitted = st.form_submit_button("UPLOAD AUDIO FILES")
                                     
             if submitted and uploaded_file is not None:
                 fileName = uploaded_file.name

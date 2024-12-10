@@ -10,6 +10,7 @@ def show_PCG(wav_file):
     data,sr=librosa.load(wav_file, sr=2000)
     plot= librosa.display.waveshow(data, sr=2000)
     plt.title("PCG Signal")
+    plt.ylabel('Amplitude')
     buf = BytesIO()
     plt.savefig(buf, format="png")
     plt.close()

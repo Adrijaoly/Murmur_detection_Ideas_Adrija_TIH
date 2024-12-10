@@ -11,14 +11,18 @@ from urllib.parse import urlparse
 import io
 
 import db
+import db_2
 import ingestion_gui
 import Analysis_gui
 import Prediction_gui
+import model_gui
 # import Time_Series_Analysis_gui
 # import ML_Modelling_gui
 # import storytelling_gui
 
 db.init_db() #Create the tables and sequences in DuckDB if not present
+db_2.init_db()
+
 uploaded_file="wav"
 
 
@@ -106,8 +110,8 @@ with body:
     if selected=="Prediction":
         Prediction_gui.Prediction_gui()
 
-#     if selected == "Time Series Analysis":
-#         Time_Series_Analysis_gui.Time_Series_Analysis_gui()
+    if selected == "Models":
+        model_gui.model_gui()
 
 #     if selected == "ML Modelling":
 #         ML_Modelling_gui.ML_Modelling_gui()
