@@ -43,6 +43,8 @@ def Analysis_gui():
         if dataset_file_name is not None:
             file_path = os.path.join("dataset_files/",dataset_file_name)
             output_file_path=os.path.join("Converted_dataset_files/", "converted_" + os.path.splitext(dataset_file_name)[0] + ".wav")
+            os.chmod('./ffmpeg', 0o755)  # Grants execute permissions to the owner, group, and others
+
             subprocess.run([
             "./ffmpeg",
             "-i", file_path,        
