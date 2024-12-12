@@ -44,7 +44,7 @@ def Analysis_gui():
             file_path = os.path.join("dataset_files/",dataset_file_name)
             output_file_path=os.path.join("Converted_dataset_files/", "converted_" + os.path.splitext(dataset_file_name)[0] + ".wav")
             subprocess.run([
-            "ffmpeg",
+            "./ffmpeg",
             "-i", file_path,        
             "-c:a", "pcm_s16le",     
             "-ar", "44100",          
