@@ -6,6 +6,7 @@ import io
 import os
 import glob
 import subprocess
+import ffmpeg
 
 dataset_file_name = None 
 
@@ -43,13 +44,19 @@ def Analysis_gui():
         if dataset_file_name is not None:
             file_path = os.path.join("dataset_files/",dataset_file_name)
             output_file_path=os.path.join("Converted_dataset_files/", "converted_" + os.path.splitext(dataset_file_name)[0] + ".wav")
-            os.chmod('./ffmpeg', 0o755)  # Grants execute permissions to the owner, group, and others
+            # os.chmod('./ffmpeg', 0o755) 
+            # subprocess.run([
+            # "./ffmpeg",
+            # "-i", file_path,        
+            # "-c:a", "pcm_s16le",     
+            # "-ar", "44100",          
+            # "-ac", "2",              
+            # output_file_path], check=True)
+            ffmpeg.input(file_path).output(output_file_path,
+                                            c='pcm_s16le',
+                                            ar='44100',
+                                            ac='2'
+                                            ).run()
 
-            subprocess.run([
-            "./ffmpeg",
-            "-i", file_path,        
-            "-c:a", "pcm_s16le",     
-            "-ar", "44100",          
-            "-ac", "2",              
-            output_file_path], check=True)
+    
             st.audio(output_file_path, format="audio/mpeg")
