@@ -40,19 +40,19 @@ def Analysis_gui():
     with feature:
         if dataset_file_name is not None:
             st.image("output.png")
-    with audio_display:
-        if dataset_file_name is not None:
-            file_path = os.path.join("dataset_files/",dataset_file_name)
-            output_file_path=os.path.join("Converted_dataset_files/", "converted_" + os.path.splitext(dataset_file_name)[0] + ".wav")
-            # os.chmod('./ffmpeg', 0o755) 
-            subprocess.run([
-            "./ffmpeg",
-            "-i", file_path,        
-            "-c:a", "pcm_s16le",     
-            "-ar", "44100",          
-            "-ac", "2",              
-            output_file_path], check=True)
+    # with audio_display:
+    #     if dataset_file_name is not None:
+    #         file_path = os.path.join("dataset_files/",dataset_file_name)
+    #         output_file_path=os.path.join("Converted_dataset_files/", "converted_" + os.path.splitext(dataset_file_name)[0] + ".wav")
+    #         # os.chmod('./ffmpeg', 0o755) 
+    #         subprocess.run([
+    #         "./ffmpeg",
+    #         "-i", file_path,        
+    #         "-c:a", "pcm_s16le",     
+    #         "-ar", "44100",          
+    #         "-ac", "2",              
+    #         output_file_path], check=True)
             
 
     
-            st.audio(output_file_path, format="audio/mpeg")
+    #         st.audio(output_file_path, format="audio/mpeg")
